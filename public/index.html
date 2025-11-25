@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RISE RUNNING // ULTIMATE EDITION</title>
+    <title>RISE RUNNING</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,7 @@
             --noise-opacity: 0.03;
         }
 
+        /* Cursor: none global (será anulado no mobile no fim do CSS) */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
@@ -66,7 +67,7 @@
             pointer-events: none; z-index: 9000; mix-blend-mode: overlay; opacity: var(--noise-opacity);
         }
 
-        /* --- PRELOADER CARDÍACO --- */
+        /* --- PRELOADER --- */
         .loader-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 10000;
@@ -106,7 +107,6 @@
             background: rgba(10, 10, 10, 0.05); backdrop-filter: blur(10px);
         }
         
-        /* LOGO CORRIGIDO: Apenas texto, sem ícone */
         .brand { 
             font-size: 1.5rem; font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; 
             text-decoration: none; color: var(--md-sys-color-on-surface); justify-self: start;
@@ -149,7 +149,7 @@
             transform-style: preserve-3d; perspective: 1000px;
         }
 
-        /* === VIDEO MASK: CONFIGURAÇÃO HÍBRIDA === */
+        /* === VIDEO MASK === */
         .hero-main {
             grid-column: 1 / 2; grid-row: 1 / 3; padding: 0; isolation: isolate;
             background-color: #000 !important; 
@@ -157,52 +157,34 @@
         .cell-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 0;
-            /* DARK: Vídeo normal com contraste */
             filter: grayscale(100%) contrast(1.2); opacity: 0.9; 
             transition: filter 0.3s;
         }
-
-        /* LIGHT: Vídeo invisível ou muito sutil */
         [data-theme="light"] .cell-video { opacity: 0; }
 
         .mask-layer {
             position: relative; z-index: 1; width: 100%; height: 100%; padding: 32px;
             display: flex; flex-direction: column; justify-content: space-between;
-            /* DARK: Multiply para o fundo preto cobrir o vídeo */
             background-color: #000; 
             mix-blend-mode: multiply; 
         }
 
-        /* LIGHT: Fundo Branco, modo Normal */
         [data-theme="light"] .hero-main { background-color: #fff !important; } 
         [data-theme="light"] .mask-layer { background-color: #fff; mix-blend-mode: normal; }
         
-        /* TEXTO HERO */
         .mask-content h1 {
             font-size: clamp(4rem, 9vw, 10rem); line-height: 0.85; font-weight: 800;
             text-transform: uppercase; letter-spacing: -0.04em; margin-bottom: 32px;
         }
         .mask-content h1 span { display: block; }
-
-        /* --- DARK MODE: TEXTO BRANCO PURO (REVELA VÍDEO) --- */
         .mask-content h1 span { color: #fff; -webkit-text-stroke: 0; }
         .reveal-text { color: #fff !important; }
 
-        /* --- LIGHT MODE: OUTLINE / SOLID / OUTLINE (ESTILO SOLICITADO) --- */
-        [data-theme="light"] .mask-content h1 span {
-            color: transparent; 
-            -webkit-text-stroke: 2px #1a1a1a; /* Contorno Preto */
-        }
-        [data-theme="light"] .mask-content h1 span:nth-child(2) {
-            color: #1a1a1a; /* SEUS é Sólido */
-            -webkit-text-stroke: 0;
-        }
+        [data-theme="light"] .mask-content h1 span { color: transparent; -webkit-text-stroke: 2px #1a1a1a; }
+        [data-theme="light"] .mask-content h1 span:nth-child(2) { color: #1a1a1a; -webkit-text-stroke: 0; }
         [data-theme="light"] .reveal-text { color: #1a1a1a !important; }
-        /* === FIM VIDEO MASK === */
 
-        .hero-visual {
-            grid-column: 2 / 4; grid-row: 1 / 2; background: var(--hero-gradient); position: relative;
-        }
+        .hero-visual { grid-column: 2 / 4; grid-row: 1 / 2; background: var(--hero-gradient); position: relative; }
         .path-graphic {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 80%; height: 80%; border: 2px solid var(--md-sys-color-primary);
@@ -286,7 +268,6 @@
             font-family: var(--font-tech); opacity: 0; transform: translateX(20px); 
             transition: 0.4s; text-align: right; color: var(--md-sys-color-on-primary);
         }
-
         .lens-item:hover { flex: 2; filter: grayscale(0%) brightness(1); }
         .lens-item:hover .lens-overlay { opacity: 0.2; background: #000; }
         .lens-item:hover .lens-title { 
@@ -296,7 +277,7 @@
         }
         .lens-item:hover .lens-meta { opacity: 1; transform: translateX(0); }
 
-        /* DIAGONAL */
+        /* DIAGONAL (SECTION 02) */
         .diag-container {
             display: flex; width: 100%; height: 80vh; gap: 0;
             background: #000; overflow: hidden; border-top: 1px solid var(--md-sys-color-outline);
@@ -319,7 +300,7 @@
         .diag-item:hover .diag-content { opacity: 1; transition-delay: 0.2s; }
         .diag-content h2 { font-family: var(--font-display); font-size: 3rem; line-height: 0.9; color: var(--md-sys-color-primary); }
 
-        /* BARCODE */
+        /* BARCODE/SLICE (SECTION 03) */
         .slice-section {
             padding: 100px 0; display: flex; flex-direction: column; align-items: center;
             border-top: 1px solid var(--md-sys-color-outline);
@@ -348,7 +329,7 @@
         .slice-item:hover .slice-info { opacity: 1; }
         .slice-info h2 { font-family: var(--font-display); font-size: 3rem; color: var(--md-sys-color-primary); }
 
-        /* SECTION 04: CUSTOM INSTAGRAM */
+        /* SECTION 04: INSTAGRAM */
         .insta-section {
             padding: 100px 0; border-top: 1px solid var(--md-sys-color-outline);
             display: flex; flex-direction: column;
@@ -379,7 +360,6 @@
         .insta-item:hover .insta-overlay { opacity: 1; }
         .insta-item:hover .insta-icon, .insta-item:hover .insta-caption { transform: translateY(0); }
 
-        /* SECTION 05: LIVE FEED (NATIVE EMBEDS) */
         .native-section {
             padding: 100px 5vw;
             border-top: 1px solid var(--md-sys-color-outline);
@@ -390,6 +370,97 @@
             display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;
         }
         .instagram-media { margin: 0 auto !important; min-width: 320px !important; }
+
+      /* --- SEÇÃO 05: LINKS RÁPIDOS (TEXTO CENTRALIZADO) --- */
+.linktree-section {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 80px 20px; border-top: 1px solid var(--md-sys-color-outline);
+    background: var(--md-sys-color-background);
+}
+
+.linktree-container { 
+    max-width: 480px; width: 100%; text-align: center; 
+}
+
+.profile-img {
+    width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--md-sys-color-primary); margin-bottom: 15px;
+    filter: grayscale(100%); transition: 0.3s;
+}
+.linktree-container:hover .profile-img { filter: grayscale(0%); }
+
+.profile-title {
+    font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; 
+    letter-spacing: -0.02em; margin-bottom: 5px; color: var(--md-sys-color-on-surface);
+}
+
+.profile-slogan {
+    font-family: var(--font-tech); font-size: 0.9rem; color: var(--md-sys-color-primary);
+    margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;
+}
+
+/* --- BOTÕES --- */
+.link-btn {
+    position: relative; /* Necessário para o ícone absoluto funcionar */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    width: 100%; 
+    padding: 16px 60px; /* Padding lateral maior para o texto não bater no ícone */
+    margin-bottom: 12px;
+    background: var(--md-sys-color-container);
+    border: 1px solid transparent;
+    border-radius: 50px;
+    color: var(--md-sys-color-on-surface); text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); 
+    min-height: 64px; /* Garante altura uniforme */
+}
+
+.link-btn:hover {
+    background: var(--md-sys-color-outline);
+    border-color: var(--md-sys-color-outline);
+    transform: scale(1.01);
+}
+
+/* --- ÍCONES (Fixos na esquerda) --- */
+.btn-icon-svg, .icon-circle {
+    position: absolute; /* Tira o ícone do fluxo e fixa ele */
+    left: 20px; /* Distância fixa da esquerda */
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
+}
+
+.btn-icon-svg {
+    width: 24px; height: 24px; fill: currentColor;
+}
+
+.icon-circle {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.icon-circle svg { width: 18px; height: 18px; }
+
+/* Cores dos Ícones Especiais */
+.bg-white { background-color: #ffffff; color: #000000; }
+.bg-pink { background-color: #ff4081; color: #ffffff; }
+
+/* --- TEXTOS (Centralizados) --- */
+.btn-content {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* Centraliza itens flex (título e sub) */
+    text-align: center; /* Centraliza o texto em si */
+    width: 100%;
+}
+
+.btn-title {
+    font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.2;
+}
+.btn-sub {
+    font-family: var(--font-tech); font-size: 0.75rem; opacity: 0.6; margin-top: 4px;
+}
+
+.link-btn::after { display: none; }
 
         /* IMAGENS GERAIS */
         .li1 { background-image: url('https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=1260'); }
@@ -407,22 +478,68 @@
         .si4 { background-image: url('https://images.pexels.com/photos/3764014/pexels-photo-3764014.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .si5 { background-image: url('https://images.pexels.com/photos/40751/running-runner-long-distance-fitness-40751.jpeg?auto=compress&cs=tinysrgb&w=600'); }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--md-sys-color-outline); padding: 80px 20px;
-            margin-top: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
-        }
-        .footer-col h4 { font-family: var(--font-tech); color: var(--md-sys-color-tertiary); margin-bottom: 20px; text-transform: uppercase; }
-        .footer-col a {
-            display: block; color: var(--md-sys-color-on-surface); text-decoration: none;
-            font-size: 1.2rem; margin-bottom: 10px; transition: color 0.2s;
-        }
-        .footer-col a:hover { color: var(--md-sys-color-primary); }
-        .big-logo-footer {
-            grid-column: 1 / -1; font-size: 15vw; line-height: 0.8; font-weight: 900;
-            text-align: center; color: var(--md-sys-color-container); margin-top: 40px; user-select: none;
-        }
+        /* Footer Centralizado */
+footer {
+    border-top: 1px solid var(--md-sys-color-outline); 
+    padding: 80px 20px;
+    margin-top: 0; 
+    
+    /* MUDANÇA: Flexbox para centralizar tudo */
+    display: flex; 
+    flex-wrap: wrap; /* Permite quebrar linha se a tela for pequena */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 60px; /* Espaço entre as colunas */
+    text-align: center; /* Centraliza o texto */
+}
 
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os links e ícones */
+    min-width: 140px; /* Tamanho mínimo para não espremer */
+}
+
+.footer-col h4 { 
+    font-family: var(--font-tech); 
+    color: var(--md-sys-color-tertiary); 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer-col a {
+    display: flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre ícone e texto */
+    color: var(--md-sys-color-on-surface); 
+    text-decoration: none;
+    font-size: 1rem; 
+    margin-bottom: 12px; 
+    transition: color 0.2s;
+    opacity: 0.8;
+}
+
+.footer-col a:hover { 
+    color: var(--md-sys-color-primary); 
+    opacity: 1;
+}
+
+/* Garante que o Logo Gigante fique na linha de baixo e centralizado */
+.big-logo-footer {
+    width: 100%; /* Força quebra de linha */
+    font-size: 15vw; 
+    line-height: 0.8; 
+    font-weight: 900;
+    text-align: center; 
+    color: var(--md-sys-color-container); 
+    margin-top: 40px; 
+    user-select: none;
+    order: 10; /* Garante que fique por último */
+}
+
+        /* MEDIA QUERIES GERAIS */
         @media (max-width: 900px) {
             header { grid-template-columns: auto 1fr auto; gap: 10px; }
             .brand { font-size: 1.2rem; }
@@ -432,7 +549,11 @@
             .hero-visual { grid-column: 1; grid-row: 2; height: 300px; }
             .hero-data { grid-column: 1; grid-row: 3; }
             .hero-cta { grid-column: 1; grid-row: 4; padding: 40px;}
-            footer { grid-template-columns: 1fr 1fr; }
+           /* Novo comportamento do Footer no Mobile */
+    footer { 
+        flex-direction: column; /* Empilha verticalmente */
+        gap: 40px;
+    }
             
             .lens-container { height: auto; }
             .lens-item { height: 150px; flex: none; }
@@ -440,20 +561,26 @@
             .lens-title { font-size: 2rem; }
             .lens-item:hover .lens-title { font-size: 3rem; }
 
-            /* Mobile adjustments for new sections */
-            .diag-container { flex-direction: column; height: auto; }
-            .diag-item { height: 200px; margin: 0; clip-path: none !important; }
-            .diag-item:hover { flex: 1; }
-            
-            .slice-wrapper { flex-direction: column; height: auto; width: 100%; }
-            .slice-item { width: 100%; height: 150px; margin: 2px 0; }
-            .slice-item:hover { flex: 1; height: 250px; }
-            .slice-overlay span { transform: rotate(0); writing-mode: horizontal-tb; }
-
             .insta-grid { grid-template-columns: repeat(2, 1fr); }
             .insta-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-            
             .native-wrapper { flex-direction: column; align-items: center; }
+        }
+
+        /* --- CORREÇÕES AGRESSIVAS PARA MOBILE / TOUCH --- */
+        @media screen and (max-width: 1024px), (hover: none), (pointer: coarse) {
+            /* 1. Mata o cursor customizado */
+            .cursor-dot, .cursor-outline { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+            * { cursor: auto !important; }
+            .hover-trigger:hover { transform: none !important; }
+
+            /* 2. Força imagens da Seção 02 (Diagonal) a aparecerem empilhadas */
+            .diag-container { flex-direction: column; height: auto !important; display: flex; }
+            .diag-item { flex: none !important; width: 100% !important; height: 250px !important; margin: 0; clip-path: none !important; border-bottom: 1px solid var(--md-sys-color-outline); }
+            
+            /* 3. Força imagens da Seção 03 (Slice) a aparecerem empilhadas */
+            .slice-wrapper { flex-direction: column; height: auto !important; width: 100%; display: flex; }
+            .slice-item { width: 100% !important; height: 180px !important; margin: 1px 0 !important; flex: none !important; }
+            .slice-overlay span { transform: rotate(0); writing-mode: horizontal-tb; }
         }
     </style>
 </head>
@@ -482,7 +609,7 @@
             <a href="#" class="nav-item hover-trigger">CREW</a>
         </nav>
         <div class="header-actions">
-            <a href="#" class="pill filled hover-trigger">JOIN CLUB</a>
+            <a href="https://chat.whatsapp.com/DAlEyNXs6ON2E91X0yulXd?mode=wwc" class="pill filled hover-trigger">JOIN CLUB</a>
             <button id="theme-toggle" class="theme-toggle hover-trigger">
                 <svg class="theme-icon icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 <svg class="theme-icon icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -600,43 +727,130 @@
         <section class="insta-section">
             <div class="insta-header">
                 <div>
-                    <span class="section-label" style="padding:0; margin-bottom:10px;">04 // COMMUNITY (DESIGN)</span>
+                    <span class="section-label" style="padding:0; margin-bottom:10px;">04 // COMMUNITY</span>
                     <h2 style="font-family: var(--font-display); font-size: 3rem; line-height:1;">FOLLOW THE<br>MOVEMENT</h2>
                 </div>
-                <a href="#" class="pill hover-trigger">@_RISERUNNING</a>
+                <a href="https://www.instagram.com/_riserunning/" class="pill hover-trigger">@_RISERUNNING</a>
             </div>
            
             <div class="native-wrapper">
-                
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRPlX1Ijh0Y/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DRPlX1Ijh0Y/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver essa foto no Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DRPlX1Ijh0Y/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Uma publicação compartilhada por Rise Club (@_riserunning)</a></p></div></blockquote>
-
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRPfNs8jsLu/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/DRPfNs8jsLu/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver essa foto no Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/DRPfNs8jsLu/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Uma publicação compartilhada por Rise Club (@_riserunning)</a></p></div></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRPlX1Ijh0Y/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"></div></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRPfNs8jsLu/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"></div></blockquote>
                 <script async src="//www.instagram.com/embed.js"></script>
             </div>
         </section>
 
-        <footer>
-            <div class="footer-col">
-                <h4>Navegação</h4>
-                <a href="#" class="hover-trigger">Manifesto</a>
-                <a href="#" class="hover-trigger">Planilhas</a>
-                <a href="#" class="hover-trigger">Loja</a>
+        <section class="linktree-section">
+    <span class="section-label" style="margin-bottom: 30px;">05 // LINKS RÁPIDOS</span>
+    
+    <div class="linktree-container">
+        <img src="https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Rise Profile" class="profile-img hover-trigger">
+        
+        <h2 class="profile-title">RISE RUNNING CLUB</h2>
+        <p class="profile-slogan">O CORRE NÃO PARA!</p>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScdUs9-KWjmguVHf3tqI270VjsUD943A3DCCBGaAH3z-8oxRA/viewform?usp=dialog" target="_blank" class="link-btn hover-trigger">
+            <svg class="btn-icon-svg" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
+            <div class="btn-content">
+                <span class="btn-title">Inscrição Rise Club | 30/11 - 14h</span>
             </div>
+        </a>
+        
+        <a href="https://chat.whatsapp.com/DAlEyNXs6ON2E91X0yulXd?mode=wwc" target="_blank" class="link-btn hover-trigger">
+            <div class="icon-circle bg-white">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+            </div>
+            <div class="btn-content">
+                <span class="btn-title">WhatsApp - Comunidade</span>
+                <span class="btn-sub">WhatsApp Community • Free to join</span>
+            </div>
+        </a>
+
+        <a href="https://chat.whatsapp.com/HVxghPEHXd5AG69VVdW7kw" target="_blank" class="link-btn hover-trigger">
+            <div class="icon-circle bg-pink">
+                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+            </div>
+            <div class="btn-content">
+                <span class="btn-title">WhatsApp - Rise Girls</span>
+                <span class="btn-sub">WhatsApp Community • Free to join</span>
+            </div>
+        </a>
+        
+        <a href="https://www.instagram.com/_riserunning/" target="_blank" class="link-btn btn-center-text hover-trigger">
+            <svg class="btn-icon-svg" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path></svg>
+            <div class="btn-content">
+                <span class="btn-title">Instagram</span>
+            </div>
+        </a>
+
+        <a href="https://www.tiktok.com/@riseclub_" target="_blank" class="link-btn btn-center-text hover-trigger">
+            <svg class="btn-icon-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
+  <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+</svg>
+            <div class="btn-content">
+                <span class="btn-title">TikTok</span>
+            </div>
+        </a>
+        
+        <a href="https://strava.app.link/7C00avDhoUb" target="_blank" class="link-btn btn-center-text hover-trigger">
+           <svg class="btn-icon-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-strava" viewBox="0 0 16 16">
+  <path d="M6.731 0 2 9.125h2.788L6.73 5.497l1.93 3.628h2.766zm4.694 9.125-1.372 2.756L8.66 9.125H6.547L10.053 16l3.484-6.875z"/>
+</svg>
+            <div class="btn-content">
+                <span class="btn-title">Strava</span>
+            </div>
+        </a>
+    </div>
+        </section>
+
+        <footer>
+            
             <div class="footer-col">
                 <h4>Social</h4>
-                <a href="#" class="hover-trigger">Instagram</a>
-                <a href="#" class="hover-trigger">Strava</a>
+                <a href="https://www.instagram.com/_riserunning/" class="hover-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+</svg> Instagram</a>
+                <a href="https://www.tiktok.com/@riseclub_" class="hover-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
+  <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+</svg> TikTok</a>
+                <a href="https://strava.app.link/7C00avDhoUb" class="hover-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-strava" viewBox="0 0 16 16">
+  <path d="M6.731 0 2 9.125h2.788L6.73 5.497l1.93 3.628h2.766zm4.694 9.125-1.372 2.756L8.66 9.125H6.547L10.053 16l3.484-6.875z"/>
+</svg> Strava</a>
             </div>
+            
+            <div class="footer-col">
+                <h4>Comunidade</h4>
+                <a href="https://chat.whatsapp.com/DAlEyNXs6ON2E91X0yulXd?mode=wwc" class="hover-trigger">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+Rise Club</a>
+                <a href="https://chat.whatsapp.com/HVxghPEHXd5AG69VVdW7kw" class="hover-trigger">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+Rise Girls</a>    
+            </div>
+
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="#" class="hover-trigger">Termos</a>
-                <a href="#" class="hover-trigger">Privacidade</a>
+                <a href="#" class="hover-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+  <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+  <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
+</svg> Termos</a>
+                <a href="#" class="hover-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-incognito" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="m4.736 1.968-.892 3.269-.014.058C2.113 5.568 1 6.006 1 6.5 1 7.328 4.134 8 8 8s7-.672 7-1.5c0-.494-1.113-.932-2.83-1.205l-.014-.058-.892-3.27c-.146-.533-.698-.849-1.239-.734C9.411 1.363 8.62 1.5 8 1.5s-1.411-.136-2.025-.267c-.541-.115-1.093.2-1.239.735m.015 3.867a.25.25 0 0 1 .274-.224c.9.092 1.91.143 2.975.143a30 30 0 0 0 2.975-.143.25.25 0 0 1 .05.498c-.918.093-1.944.145-3.025.145s-2.107-.052-3.025-.145a.25.25 0 0 1-.224-.274M3.5 10h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5m-1.5.5q.001-.264.085-.5H2a.5.5 0 0 1 0-1h3.5a1.5 1.5 0 0 1 1.488 1.312 3.5 3.5 0 0 1 2.024 0A1.5 1.5 0 0 1 10.5 9H14a.5.5 0 0 1 0 1h-.085q.084.236.085.5v1a2.5 2.5 0 0 1-5 0v-.14l-.21-.07a2.5 2.5 0 0 0-1.58 0l-.21.07v.14a2.5 2.5 0 0 1-5 0zm8.5-.5h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5"/>
+</svg> Privacidade</a>
             </div>
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p class="mono" style="font-size: 0.8rem; margin-bottom: 10px; opacity: 0.7;">Receba dicas.</p>
-                <input type="email" placeholder="Email..." style="background: transparent; border: 1px solid var(--md-sys-color-outline); padding: 10px; color: var(--md-sys-color-on-surface); width: 100%;">
-            </div>
+
             <div class="big-logo-footer">RISE RUNNING</div>
         </footer>
 
