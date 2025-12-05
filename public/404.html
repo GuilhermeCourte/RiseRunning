@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 // OUT OF BOUNDS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon_rise.png">
+
+    <style>
+        :root {
+            /* Mesmas variáveis do seu site */
+            --md-sys-color-primary: #ff5e00; 
+            --md-sys-color-on-primary: #000000;
+            --md-sys-color-background: #0a0a0a;
+            --md-sys-color-surface: #121212;
+            --md-sys-color-on-surface: #e2e2e2;
+            --md-sys-color-outline: #3e3e3e;
+            --font-display: 'Archivo', sans-serif;
+            --font-tech: 'Space Mono', monospace;
+            --noise-opacity: 0.05;
+        }
+
+        [data-theme="light"] {
+            --md-sys-color-primary: #ff4800;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-background: #f0f0f0;
+            --md-sys-color-surface: #ffffff;
+            --md-sys-color-on-surface: #1a1a1a;
+            --md-sys-color-outline: #cccccc;
+            --noise-opacity: 0.03;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-surface);
+            font-family: var(--font-display);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* TEXTURA NOISE */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9000; mix-blend-mode: overlay; opacity: var(--noise-opacity);
+        }
+
+        /* CURSOR */
+        .cursor-dot { width: 8px; height: 8px; background: var(--md-sys-color-on-surface); position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid var(--md-sys-color-on-surface); position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: exclusion; transition: width 0.3s, height 0.3s; }
+        body.hovering .cursor-outline { width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-color: transparent; }
+
+        /* CONTEÚDO 404 */
+        .error-container {
+            position: relative; z-index: 10; padding: 20px;
+        }
+
+        .glitch-text {
+            font-size: clamp(8rem, 25vw, 15rem);
+            font-weight: 900;
+            line-height: 0.8;
+            color: var(--md-sys-color-primary);
+            position: relative;
+            letter-spacing: -0.05em;
+        }
+        
+        /* Efeito Glitch Simples */
+        .glitch-text::before, .glitch-text::after {
+            content: '404'; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--md-sys-color-background); opacity: 0.8;
+        }
+        .glitch-text::before {
+            color: #0ff; z-index: -1; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            animation: glitch 2s infinite linear alternate-reverse; transform: translate(-2px, -2px);
+        }
+        .glitch-text::after {
+            color: #f0f; z-index: -2; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            animation: glitch 2.5s infinite linear alternate-reverse; transform: translate(2px, 2px);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .error-label {
+            font-family: var(--font-tech);
+            color: var(--md-sys-color-on-surface);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        .error-msg {
+            font-size: 1.5rem;
+            margin: 20px 0 40px 0;
+            max-width: 600px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--md-sys-color-primary);
+            color: var(--md-sys-color-primary);
+            font-family: var(--font-tech);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            transform: scale(1.05);
+        }
+
+        .meta-coords {
+            position: absolute; bottom: 30px; 
+            font-family: var(--font-tech); font-size: 0.8rem; opacity: 0.4;
+        }
+
+        /* --- CORREÇÃO MOBILE (IGUAL AO INDEX) --- */
+        @media screen and (max-width: 1024px), (hover: none), (pointer: coarse) {
+            .cursor-dot, .cursor-outline { display: none !important; }
+            * { cursor: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="error-container">
+        <div class="error-label hover-trigger">/// ERROR_track_not_found</div>
+        <div class="glitch-text hover-trigger">404</div>
+        <p class="error-msg">
+            VOCÊ SAIU DA ROTA.<br>
+            VOLTE PARA O PELOTÃO.
+        </p>
+
+        <a href="index.html" class="btn-home hover-trigger">
+            Voltar ao Início
+        </a>
+    </div>
+
+    <div class="meta-coords">
+        LAT: NULL // LONG: NULL // PACE: 0'00"
+    </div>
+
+    <script>
+        // CURSOR SCRIPT (O mesmo do Index)
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+        let mouseX = 0, mouseY = 0;
+        let outlineX = 0, outlineY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+            dot.style.transform = `translate(-50%, -50%)`;
+        });
+
+        function animateCursor() {
+            const dt = 0.15;
+            outlineX += (mouseX - outlineX) * dt;
+            outlineY += (mouseY - outlineY) * dt;
+            outline.style.left = outlineX + 'px';
+            outline.style.top = outlineY + 'px';
+            outline.style.transform = `translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('.hover-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+    </script>
+</body>
+</html>

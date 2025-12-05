@@ -1,0 +1,65 @@
+[
+    {
+        "id": "1",
+        "title": "Inscri\u00e7\u00e3o Rise Club | 30\/11 - 14h",
+        "subtitle": "",
+        "link": "https:\/\/docs.google.com\/forms\/d\/e\/1FAIpQLScdUs9-KWjmguVHf3tqI270VjsUD943A3DCCBGaAH3z-8oxRA\/viewform?usp=dialog",
+        "image": "",
+        "visible": true
+    },
+    {
+        "id": "2",
+        "title": "WhatsApp - Comunidade",
+        "subtitle": "WhatsApp Community \u2022 Free to join",
+        "link": "https:\/\/chat.whatsapp.com\/DAlEyNXs6ON2E91X0yulXd?mode=wwc",
+        "image": "",
+        "visible": true
+    },
+    {
+        "id": "3",
+        "title": "WhatsApp - Rise Girls",
+        "subtitle": "WhatsApp Community \u2022 Free to join",
+        "link": "https:\/\/chat.whatsapp.com\/HVxghPEHXd5AG69VVdW7kw",
+        "image": "",
+        "visible": true
+    },
+    {
+        "id": "4",
+        "title": "Instagram",
+        "subtitle": "",
+        "link": "https:\/\/www.instagram.com\/_riserunning\/",
+        "image": "",
+        "visible": true
+    },
+    {
+        "id": "5",
+        "title": "TikTok",
+        "subtitle": "",
+        "link": "https:\/\/www.tiktok.com\/@riseclub_",
+        "image": ""
+    },
+    {
+        "id": "6",
+        "title": "Strava",
+        "subtitle": "",
+        "link": "https:\/\/strava.app.link\/7C00avDhoUb",
+        "image": "",
+        "visible": true
+    },
+    {
+        "id": "6927ddc4340d3",
+        "title": "teste",
+        "subtitle": "awdawdawwawdwa",
+        "link": "https:\/\/www.google.com",
+        "image": "",
+        "visible": false
+    },
+    {
+        "id": "6927ded7594d8",
+        "title": "testefoda",
+        "subtitle": "dadwdadaw",
+        "link": "https:\/\/www.google.com",
+        "image": "",
+        "visible": false
+    }
+]
